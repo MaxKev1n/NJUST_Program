@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>添加商品</title>
+		<meta name="viewport" content="width = divice - width, initial - scale = 1.0"/>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"/>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			html,
+			body{
+				background-color: #ECCCCF;
+			}
+			#operate{
+				width: 100%;
+				height: auto;
+				margin: 0 auto;
+				margin-top: 15%;
+				text-align: center;
+				background: 0;
+				padding: 0 auto;
+				font-size: 20px;
+			}
+			#operate .container{
+				position: relative;
+				margin-left: 165px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="operate">
+			<h3>添加商品</h3>
+			<p>
+				<label>商品名称</label>&nbsp;
+				<input type= "text" v-model.trim.lazy = "goods.name">
+			</p>
+			<p>
+				<label>商品编号</label>&nbsp;
+				<input type="text" v-model.trim.lazy = "goods.id">
+			</p>
+			
+			<div class="container" enctype="multipart/form-data" > 
+				<label>&nbsp;&nbsp;提交图片</label>
+			    <input type="file" id="chooseImage" name="file" >
+			    <!-- 保存管理员上传的图片 -->
+			    <img id="cropedBigImg" value='custom' data-address='' title="图片"/>
+			</div>
+		</div>
+		<p><a class = "btn btn-primary btn-lg" href = "订单管理.html" role = "button">返回订单管理</a></p>
+	</body>
+	<script>
+		 $('#chooseImage').on('change',function(){
+		    	var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
+		    	    fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();// 检查是否是图片
+					src = window.URL.createObjectURL(this.file[0]);//转成可以在本地预览的格式
+		    	if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
+		    		error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+		        	return;  
+		        }
+		        $('#cropedBigImg').attr('src',filePath);
+		        $('#loding').show();
+		});
+	</script>
+</html>

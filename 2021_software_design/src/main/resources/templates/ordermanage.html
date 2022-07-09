@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>用户列表</title>
+		<!-- 引入 Bootstrap -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/popDrag.css"/>
+		<script src="./js/vue.js"></script>
+		<script src="js/PopDrag.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<style>
+		a{
+			color:#fff;
+		}
+		h1{
+			text-align: center;
+		}
+		th{
+			text-align: center;
+		}
+	</style>
+
+	<body>
+		<h1>订单管理</h1>
+		<table class="table table-striped table-bordered table-hover text-center">
+			<thead>
+			<tr style="text-align:center">
+				<th>订单编号</th>
+				<th>用户编号</th>
+				<th>商品编号</th>
+				<th>商品数量</th>
+				<th>实际收货地址</th>
+				<th>实际收货电话</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+
+			<tr th:each="orders:${orders}">
+				<td th:text="${orders.orderno}"></td>
+				<td th:text="${orders.userno}"></td>
+				<td th:text="${orders.commodityno}"></td>
+				<td th:text="${orders.quantity}"></td>
+				<td th:text="${orders.location}"></td>
+				<td th:text="${orders.tel}"></td>
+				<td>
+					<div class="arrangementButton" v-for = "(arrangementButton,index) in data">
+					<a class="btn btn-primary" th:href="@{'/updatePage/'+${orders.orderno}}">更改</a>
+					<a class="btn btn-danger" th:href="@{'/orderdelete/'+${orders.orderno}}">删除</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<input id="btn" type="button" value="添加订单" class="btn btn-primary"> 
+		<!--遮罩层-->
+		<div id="textPopBox" class="popBox" >
+		    <h3 class="popBoxHandle">添加订单</h3>  
+		    <form action="/orderadd" method="post">
+		        <table width="100%" cellpadding="5">  
+		            <tr>  
+		                <td width="200" align="right">  
+		                    订单编号：      
+		                </td>  
+						<td>
+							&#12288; <input type="number" placeholder="请输入商品编号" name="orderno"/>
+						</td>
+		            </tr>
+					<tr>
+					    <td width="200" align="right">  
+					        用户编号：      
+					    </td>  
+						<td>
+							&#12288; <input type="number" placeholder="请输入商品名称" name="userno"/>
+						</td>
+					</tr>
+					<tr>
+					    <td width="200" align="right">  
+					        商品编号：      
+					    </td>  
+						<td>
+							&#12288; <input type="text" placeholder="请输入商品价格" name="commodityno"/>
+						</td>
+					</tr>
+					<tr>
+					    <td width="200" align="right">
+							商品数量：
+					    </td>  
+						<td>
+							&#12288; <input type="number" placeholder="请输入商品库存" name="quantity"/>
+						</td>
+					</tr>
+					<tr>
+					    <td width="200" align="right">
+							实际收货地址：
+					    </td>  
+						<td>
+							&#12288; <input type="text" placeholder="请输入商品介绍" name="location"/>
+						</td>
+					</tr>
+					<tr>
+					    <td width="200" align="right">
+							实际收货电话：
+					    </td>  
+						<td>
+							&#12288; <input type="tel" placeholder="请输入商品介绍" name="tel"/>
+						</td>
+					</tr>
+		            <tr>  
+		                <td colspan="2" align="center">  
+		                    <br />  
+		                    <input id='ok' type="submit" class="button green" value="        确    认        " />
+		                    <input id='cancel' type="button" class="button blue" value="        取    消        " />  
+		                </td>  
+		            </tr>  
+		        </table>  
+		    </form>  
+		</div>  
+		  
+		  
+		<script type="text/javascript">  
+		    //初始化弹出框  
+		    var p = new PopUp({  
+		        //isScroll:'disabled'  
+		        //enableDrag:'disabled'  
+		        //enableShadow:'disabled'  
+		        //id为你自己自定义的弹出框div的id  
+		        id:"textPopBox"  
+		    });  
+		  
+		    //缩放窗口时重新定位弹出框及遮罩层的宽度和高度  
+		    EventUtil.addEvent(window,'resize', function() {  
+		        p.setPosition();  
+		        //如果开启遮罩层，遮罩层元素存在，则重新定位遮罩层  
+		        p.enableShadow && p.enableShadow.shadow && p.enableShadow.setProperty(p.enableShadow.shadow);  
+		    });  
+		    EventUtil.addEvent(EventUtil._$('btn'),'click', function() {  
+		        p.show({//定义坐标，如果缺省则居中显示  
+		//            x:100,  
+		//            y:100  
+		        });  
+		    });  
+		    EventUtil.addEvent(EventUtil._$('ok'),'click', function() {  
+		        //自定义点击确定按钮之后得操作  
+		        var t =$("#backReason").val();  
+		        alert(t);  
+		        //隐藏弹出框  
+		        p.hide();  
+		    });  
+		    EventUtil.addEvent(EventUtil._$('cancel'),'click', function() {  
+		        //自定义点击取消按钮之后得操作  
+		          
+		        //隐藏弹出框  
+		        p.hide();  
+		    });  
+		  
+		    //当按下ESC键时关闭弹出框  
+		//    EventUtil.addEvent(document,'keyup',function(e) {  
+		//        e = e || window.event;  
+		//        e.keyCode == 27 && p.hide();  
+		//    });  
+		  
+		    EventUtil.addEvent(window,'load',function() {  
+		        if((isIE6 || isOpera) && p.isScroll != null && p.isScroll == 'enabled') {  
+		            EventUtil.addEvent(window,'scroll', function() {  
+		                setTimeout(function() {  
+		                    p.setPosition();  
+		                },100);  
+		            });  
+		        }  
+		    });  
+		      
+		    //单选按钮的点击切换事件  
+		    function openText(self) {  
+		        var value = $(self).val();  
+		        if ("true"==value) {  
+		            $('#reasonText').css("display", "");  
+		        } else {  
+		            $('#reasonText').css("display", "none");  
+		        }  
+		    }
+			
+		</script> 
+	</body>
+
+</html>

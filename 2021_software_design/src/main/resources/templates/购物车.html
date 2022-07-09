@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8" >
+		<title>我的购物车</title>
+		<link rel = "stylesheet" href = "../static/css/bootstrap.min.css">
+		<link rel = "stylesheet" href = "../static/css/bootstrap.min.css">
+		<script src = "../static/js/vue.js" ></script>
+		<script src="../static/js/vue.min.js"></script>
+		<script src = "../static/js/data.js" ></script>
+	</head>
+	<body bgcolor="#0A58CA">
+		<div class = "container">
+			<template v-if = "data.length">
+				<h3>我的购物车</h3>
+				<div class = "product">
+					<div class = "item">
+						<span class = "btn btn-default" >商品名称</span>
+						<span class = "btn btn-default left" >商品数量</span>
+						<span class = "btn btn-default left" >操作</span>
+					</div>
+					<div class = "item" style = "padding: 5%; border: 1px solid black" v-for = "(item,index) in data" >
+					   <span class = "btn btn-default" >{{item.name}}</span>
+					   <span>
+							<em class = "btn btn-primary add" v-on:click = "item.count<10?item.count++:''" :class = "{off:item.count==10}">+</em>
+							{{item.count}}
+							<em class = "btn btn-primary reduce" v-on:click = "item.count>1?item.count--:''" :class = "{off:item.count==1}">-</em>
+						</span>
+						<span class = "btn btn-danger left" v-on:click = "del(index)">移除</span>
+					</div>
+				</div>
+			</template >
+			<template v-else>
+				<div class = "jumbotron">
+					<h1>购物车空空如也。</h1>
+					<h1>赶紧去采购吧！</h1>
+				</div>
+			</template>
+		</div>
+		<table class="list" border="1" bgcolor="violet" bordercolor="white"cellpadding="5">
+			<!-- 页面固定回到商城主页 -->
+			<tr>
+				<td>
+					<a href="homepage.html">回到商城>></a>
+				</td>
+			</tr>
+		</table>
+	</body>
+	<script>
+		new Vue({
+			el:'.container',
+			data:{
+				data:data
+			},
+			methods:{
+				del:function(index){
+					alert("你正在移除" + this.data[index].name);
+					this.data.splice(index,1);
+				}
+			}
+		})
+	</script>
+</html>

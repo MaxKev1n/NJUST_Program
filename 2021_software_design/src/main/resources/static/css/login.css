@@ -1,0 +1,129 @@
+.logo{
+	float:left;
+	padding-top:22px;
+}
+
+.logo a{
+	width:170px;
+	height:60px;
+	display:inline-block;
+	background: url("/img/logo.png") no-repeat;
+	vertical-align: bottom;
+	text-indent: -2000px;
+}
+
+.welcome{
+	float:left;
+	padding-top:22px;
+	text-align: center;
+	width:240px;
+	height:60px;
+	line-height: 75px;
+	font-size: 36px;
+	color: #62645e;
+}
+
+.login{
+	float:right;
+	padding-top:22px;
+	background-color: white;
+	width: 200px;
+	height: 60px;
+	text-align: center;
+	line-height: 70px;
+	text-decoration: none;
+}
+
+.login a{
+	text-decoration:none;
+	color: red;
+}
+
+.div1{
+	background-color: white;
+	height:92px;
+	width: 990px;
+	margin: 0 auto;
+}
+
+.bl{
+	width:100%;
+	height: 30px;
+	background-color: #fff9d6;
+}
+
+.main{
+	width: 100%;
+	height: 475px;
+	background-color: #e93854;
+}
+
+.main .login_b{
+	height: 475px;
+}
+
+.main .form1{
+	padding-top: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#login-box {
+    width: 350px;
+	height: 380px;
+    text-align: center;
+    background: white;
+	float: right;
+	margin-top: 40px;
+	margin-right: 300px;
+}
+
+#login-box input{
+	outline-style: none;
+	padding:7px 5px;
+	width: 200px;
+	border: 1px solid #ccc;
+	vertical-align: middle;
+	font-size: 20px;
+}
+
+#login-box h1 {
+    color: #666666;
+	font-size: 20px;
+	margin-top: 30px;
+	font-family: "微软雅黑";
+}
+
+#login-box td{
+	height: 85px;
+}
+
+.main .inputs .table1 input{
+	width: 400px;
+	height: 35px;
+	border: 1px solid #000000;
+	font-family: "微软雅黑";
+	font-size: 30px;
+	font-weight: none;
+}
+
+.main .inputs .table1 input:hover{
+	border: 1px solid black;
+}
+
+.main .inputs .btn{
+	margin-top: 35px;
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+	color: white;
+	background-color: red;
+	border: 0;
+	cursor: pointer;
+	font-family: "微软雅黑";
+}
+
+#login-box .inputs .btn:hover{
+	background-color: #d20904;
+}
+

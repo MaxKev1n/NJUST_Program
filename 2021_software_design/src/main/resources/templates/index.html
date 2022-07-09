@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>购物网页</title>  
+        <style></style>
+		<link rel="stylesheet" type="text/css" href="../static/css/homepage.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/popDrag.css"/>
+		<script src="./js/vue.js"></script>
+		<script src="js/PopDrag.js"></script>
+		<script src="js/jquery.min.js"></script>
+    </head>
+    <body>
+		<div class="div1">
+			<div class="logo">
+				<a href="index.html"></a>
+			</div>
+			<div class="welcome">
+				<h>欢迎光临</h>
+			</div>
+			<div class="login">
+				<a href="/loginu">用户登录</a>&nbsp
+				<a href="/logins">管理员登录</a>&nbsp
+				<a href="/register">用户注册</a>
+			</div>
+		</div>
+		<div class="bl">
+		</div>
+		<div class="main">
+			<div class="container1">
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p style="font-size:30px" id="view1">体育用品</p>
+				<div class="container">
+					<div class="right">
+						<ul>
+							<li th:each="commodities1:${commodities1}" class="li1">
+								<img th:src="@{${commodities1.pic}}"/>
+								<p style="line-height: 8px;">&nbsp;</p>
+								<a th:text="${commodities1.commodityname}" href="success-cart.html" target="_blank"></a>
+								<h3 th:text="￥ + ${commodities1.price}"></h3>
+								<h5 th:text="库存 + ${commodities1.stock} + 件"></h5>
+							</li>
+						</ul>
+					</div>
+				</div>	
+			</div>
+			
+			
+			<div class="container1">
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p style="font-size:30px" id="view2">体育用品2</p>
+				<div class="container">
+					<div class="right">
+						<ul>
+							<li th:each="commodities2:${commodities2}" class="li1">
+								<img th:src="@{${commodities2.pic}}"/>
+								<p style="line-height: 8px;">&nbsp;</p>
+								<a th:text="${commodities2.commodityname}" href="success-cart.html" target="_blank"></a>
+								<h3 th:text="￥ + ${commodities2.price}"></h3>
+								<h5 th:text="库存 + ${commodities2.stock} + 件"></h5>
+							</li>
+						</ul>
+					</div>
+				</div>	
+			</div>
+			
+			<div class="container1">
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p style="font-size:30px" id="view3">体育用品3</p>
+				<div class="container">
+					<div class="right">
+						<ul>
+							<li th:each="commodities3:${commodities3}" class="li1">
+								<img th:src="@{${commodities3.pic}}"/>
+								<p style="line-height: 8px;">&nbsp;</p>
+								<a th:text="${commodities3.commodityname}" href="success-cart.html" target="_blank"></a>
+								<h3 th:text="￥ + ${commodities3.price}"></h3>
+								<h5 th:text="库存 + ${commodities3.stock} + 件"></h5>
+							</li>	
+						</ul>
+					</div>
+				</div>	
+			</div>
+		</div>
+    </body>
+</html>
+

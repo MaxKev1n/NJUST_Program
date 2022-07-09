@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>订单管理</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/cart.css"/>
+		<script src="./js/vue.min.js"></script>
+		<script src="./js/data.js"></script>
+		<script src="./js/vue.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<h3>订单管理</h3>
+			<div class = "product">
+				<div class = "item">
+					<span class = "btn btn-default" >商品名称</span>
+					<span class = "btn btn-default left" >商品数量</span>
+					<span class = "btn btn-default left" >操作</span>
+				</div>
+				<div class = "item" style = "padding: 5%; border: 1px solid black" v-for = "(item,index) in data" >
+				   <span class = "btn btn-default" >{{item.name}}</span>
+				   <span>
+						<em class = "btn btn-primary add" v-on:click = "item.count<10?item.count++:''" :class = "{off:item.count==10}">+</em>
+						{{item.count}}
+						<em class = "btn btn-primary reduce" v-on:click = "item.count>1?item.count--:''" :class = "{off:item.count==1}">-</em>
+					</span>
+					<span class = "btn btn-danger left" v-on:click = "del(index)">移除</span>
+				</div>
+			</div>
+		</div>
+		<table class="list" border="1" bgcolor="violet" bordercolor="white"cellpadding="5">
+			<!-- 页面固定回到商城主页 -->
+			<tr>
+				<td>
+					<a href="商品添加.html">上架商品>></a>
+				</td>
+			</tr>
+		</table>
+	</body>
+	<script>
+		new Vue({
+			el:'.container',
+			data:{
+				data:data
+			},
+			methods:{
+				del:function(index){
+					alert("你正在移除" + this.data[index].name+'订单');
+					this.data.splice(index,1);
+				}
+			}
+		})
+	</script>
+</html>

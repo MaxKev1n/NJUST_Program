@@ -1,0 +1,118 @@
+#include <tcpserver.h>
+#include <tcpsocket.h>
+#include <mainform.h>
+
+TcpServer::TcpServer(QObject *parent, int port) : QTcpServer(parent)
+{
+    this->listen(QHostAddress::AnyIPv4, port);
+    if(this->isListening()){
+        qDebug()<<"listen success!";
+    }
+
+}
+
+void TcpServer::incomingConnection(qintptr socketDescriptor)
+{
+    TcpSocket *socket = new TcpSocket();
+    socket->setSocketDescriptor(socketDescriptor);
+    list_tcpclient.append(socket->socketDescriptor());
+    list.append(socket);
+
+    connect(socket, &TcpSocket::Address, [this](QString address){
+        emit listensuccess(address);
+    });
+
+    connect(socket, &TcpSocket::updataclient, [this, socket](QString strInfo, int length, QString name){
+        strlistdata.append(strInfo);
+        sendonline();
+        m[socket->socketDescriptor()] = socket->peerAddress().toString();
+        namemap[socket->socketDescriptor()] = name;
+        if(strlistdata.size() >= 200){
+            strlistdata.clear();
+        }
+        Q_UNUSED(length);
+    });
+
+    connect(socket, &TcpSocket::disconnected, [this](qintptr isocket){
+        for(int i = 0;i <list_tcpclient.size();i++){
+            qintptr descriptor = list_tcpclient.at(i);
+            if(descriptor == isocket){
+                list_tcpclient.removeAt(i);
+                list.removeAt(i);
+                QString address = m[descriptor];
+                QString name = namemap[descriptor];
+
+                QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");  //驱动名称
+                db.setHostName("47.107.48.106");         //数据库主机名
+                db.setDatabaseName("project");   //数据库名称
+                db.setPort(3306);
+                db.setUserName("root");         //数据库用户名
+                db.setPassword("1048271926");
+                if(db.open()){
+                    QSqlQuery query;
+                    query.prepare("UPDATE users SET online = '0' WHERE ip = ? and username = ?");
+                    query.addBindValue(address);
+                    query.addBindValue(name);
+                    query.exec();
+                    sendonline();
+                    db.close();
+                }
+                return;
+            }
+        }
+    });
+}
+
+void TcpServer::isonline()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");  //驱动名称
+    db.setHostName("47.107.48.106");         //数据库主机名
+    db.setDatabaseName("project");   //数据库名称
+    db.setPort(3306);
+    db.setUserName("root");         //数据库用户名
+    db.setPassword("1048271926");
+    int size = 0;
+    if(db.open()){
+        QSqlQuery query;
+        query.prepare("select count(*) from users");
+        query.exec();
+        if(query.next())
+           size = query.value(0).toInt();
+        query.prepare("SELECT * FROM users");
+        query.exec();
+        qDebug()<<size;
+        while(query.next() && size--){
+            QString ip = query.value("ip").toString();
+            QHostAddress address = QHostAddress(ip);
+            qDebug()<<ip;
+            cwc = new QTcpSocket;
+            cwc->connectToHost(address, 6667);
+            if(!cwc->waitForConnected(2000) || ip == NULL){
+                QSqlQuery query2(db);
+                qDebug()<<"false";
+                query2.prepare("UPDATE users SET online = '0' WHERE `ip` = ?");
+                query2.addBindValue(ip);
+                query2.exec();
+            }
+            else{
+                qDebug()<<"true";
+                QSqlQuery query2(db);
+                query2.prepare("UPDATE users SET online = '1' WHERE `ip` = ?");
+                query2.addBindValue(ip);
+                query2.exec();
+            }
+        }
+    }
+}
+
+void TcpServer::sendonline()
+{
+    for(int i = 0;i < list.size();i++){
+        TcpSocket *temp = list.at(i);
+        QByteArray array;
+        QDataStream out(&array, QIODevice::WriteOnly);
+        out<<1;
+        temp->write(array);
+    }
+}
+

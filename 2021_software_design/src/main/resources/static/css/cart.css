@@ -1,0 +1,29 @@
+h3 {
+  text-align : center ;
+}
+.left {
+  margin-left : 14% ;
+}
+.item{
+  text-align : center ;
+  padding : 3% ;
+}
+.add{
+  margin-left : 15% ;
+}
+.off{
+  background-color : lightgrey;
+  border : 1px solid lightgrey;
+}
+.list{
+	position: fixed;
+	top: 250px;
+	left: 1380px;
+	font-family: "微软雅黑";
+	font-size: 20px;
+	color:white;
+}
+.list a {
+	text-decoration: none;
+	color:white;
+}

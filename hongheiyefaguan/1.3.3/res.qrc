@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>村长.jpg</file>
+        <file>平民.jpg</file>
+        <file>死亡.jpg</file>
+        <file>黑月.jpg</file>
+        <file>红月.jpg</file>
+        <file>wlcomeimage.jpg</file>
+        <file>start.jpg</file>
+        <file>backgroundimage.jpg</file>
+    </qresource>
+</RCC>

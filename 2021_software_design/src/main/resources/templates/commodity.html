@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/commodity.css">
+	<style>
+		input::-webkit-input-placeholder {
+			color: #aab2bd;
+			font-size: 18px;
+			font-family: "宋体";
+	}
+	</style>
+	<script>
+		function adder(){
+			var count=document.getElementById("countnum").innerHTML;
+			var num=document.getElementById("num").innerHTML;
+			if(count < num){
+				count=parseInt(count)+1;
+			}
+			else{
+				count=num;
+			}
+			document.getElementById("countnum").innerHTML=count;
+		}
+		function minuser(){
+			var count=document.getElementById("countnum").innerHTML;
+			if(count<=1){
+				count=1;
+			}else{
+				count=parseInt(count)-1;
+			}	
+			document.getElementById("countnum").innerHTML=count;
+		}
+	</script>
+</head>
+
+<body>
+    <div class="div1">
+    	<div class="logo">
+    		<a href="index.html"></a>
+    	</div>
+		<div class="welcome">
+			<h>欢迎光临</h>
+		</div>
+    </div>
+    <div class="bl">
+    </div>
+	<div class="main">
+		<div class="pic">
+			<img th:src="@{${commodity.pic}}"/>
+		</div>
+		<div class="intro">
+			<p th:text="'['+${commodity.commodityname}+']'+${commodity.details}"></p>
+		</div>
+		<div class="price">
+			<div style="width:100%;height: 30px;background-color: red;">
+			</div>
+			<table class="table1">
+				<tr>
+					<td width="100px" style="font-family: 宋体;">
+						价&nbsp格：
+					</td>
+					<td  style="color:red; font-size: 30px">
+						￥<span th:text="${commodity.price}"></span>
+					</td>
+					<td width="120px" style="font-family: 宋体;">
+						库存：<span id="num" th:text="${commodity.stock}"></span>件
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="buy">
+			<form action="" method="post">
+				<ul class="counter">
+				 <li id="minus"><input type="button" onclick="minuser()" value="-"/></li>
+				 <li id="countnum" name="">1</li>
+				 <li id="plus"><input type="button" onclick="adder()" value="+"/></li>
+				</ul>
+				<input type="submit" class="btn" value="加入购物车"/>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

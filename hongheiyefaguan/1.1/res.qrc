@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/background.png</file>
+        <file>online.png</file>
+        <file>noonline.png</file>
+    </qresource>
+</RCC>

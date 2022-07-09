@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>login.jpg</file>
+        <file>mainform.jpg</file>
+        <file>chat.jpg</file>
+    </qresource>
+</RCC>

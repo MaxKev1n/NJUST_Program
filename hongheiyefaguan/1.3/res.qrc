@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>村长.jpg</file>
+        <file>平民.jpg</file>
+    </qresource>
+</RCC>

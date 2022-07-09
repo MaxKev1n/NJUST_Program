@@ -1,0 +1,181 @@
+.logo{
+	float:left;
+	padding-top:22px;
+}
+
+.logo a{
+	width:170px;
+	height:60px;
+	display:inline-block;
+	background: url("/img/logo.png") no-repeat;
+	vertical-align: bottom;
+	text-indent: -2000px;
+}
+
+.welcome{
+	float:left;
+	padding-top:22px;
+	text-align: center;
+	width:240px;
+	height:60px;
+	line-height: 75px;
+	font-size: 36px;
+	color: #62645e;
+}
+
+.login{
+	float:right;
+	padding-top:22px;
+	background-color: white;
+	width: 200px;
+	height: 60px;
+	text-align: center;
+	line-height: 70px;
+	text-decoration: none;
+}
+
+.login a{
+	text-decoration:none;
+	color: red;
+}
+
+.div1{
+	background-color: white;
+	height:92px;
+	width: 990px;
+	margin: 0 auto;
+}
+
+.bl{
+	width:100%;
+	height: 30px;
+	background-color: #fff9d6;
+}
+
+.main{
+	margin: 0 auto;
+	background-color: white;
+	width: 60%;
+	height: 500px;
+	border-left:1px solid #000000;
+	border-right:1px solid #000000;
+	border-bottom:1px solid #000000;
+}
+
+.main .pic{
+	float: left;
+	background-color: white;
+	width: 300px;
+	height: 300px;
+	position: relative;
+	left: 20px;
+	top: 20px;
+	border: 2px solid black;
+}
+
+.main .intro{
+	float: left;
+	background-color: b;
+	width: 500px;
+	height: 60px;
+	position: relative; 
+	top: 20px;
+	left: 60px;
+}
+
+.main .intro p{
+	font-size: 20px;
+	width: 500px;
+	height: 60px;
+	line-height: 30px;
+	word-wrap:break-word;  
+	word-break:break-all;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	font-weight: bold;
+	font-family: "微软雅黑";
+	color: #53544f;
+}
+
+.main .price{
+	float: left;
+	width: 500px;
+	height: 100px;
+	background-color: 	#F5F5F5;
+	position: relative;
+	left: 60px;
+	top: 60px;
+}
+
+.main .price .table1 td{
+	text-align: center;
+	vertical-align: middle;
+	height: 70px;
+	font-size: 18px;
+}
+
+.main .buy{
+	float: left;
+	width: 300px;
+	height: 40px;
+	background-color: white;
+	position: relative;
+	top: 100px;
+	left: 60px;
+}
+
+ul,li{
+	margin:0;
+	padding:0; 
+}
+
+.counter li{
+	float:left; 
+	list-style-type:none; 
+	width:35px; 
+	height:35px; 
+	text-align:center; 
+	line-height:35px; 
+	border:#999 thin solid; 
+	background-color:#fff
+}
+
+.counter li input{
+	font-size:20px; 
+	width:100%; 
+	height:100%; 
+	outline:none; 
+	-webkit-appearance:none; 
+	background:none; 
+	margin:0; 
+	padding:0; 
+	border: 1px solid transparent; 
+	border-radius: 0;
+	cursor: pointer;
+}
+
+#countnum{ 
+	border-left:hidden; 
+	border-right:hidden; 
+	color:#666
+}
+
+.buy .btn{
+	margin-top: 35px;
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+	color: white;
+	background-color: red;
+	border: 0;
+	cursor: pointer;
+	font-family: "微软雅黑";
+}
+
+.buy .btn:hover{
+	background-color: #d20904;
+}
