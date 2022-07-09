@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    tools:context=".ui.dashboard.DashboardFragment"
+    tools:viewBindingIgnore="true">
+
+    <View
+        android:id="@+id/viewList"
+        android:layout_width="354dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/shape_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/toDoList"
+        android:layout_width="300dp"
+        android:layout_height="480dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/viewList"
+        app:layout_constraintStart_toStartOf="@+id/viewList"
+        app:layout_constraintTop_toTopOf="@+id/viewList" />
+
+    <Button
+        android:id="@+id/buttonAddList"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_shape"
+        android:text="+"
+        android:textSize="25dp"
+        app:backgroundTint="@color/button_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="212dp"
+        android:layout_height="70dp"
+        android:text="待办事项"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/button_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/viewList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
